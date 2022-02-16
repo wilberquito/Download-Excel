@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @CrossOrigin("**")
@@ -23,8 +24,8 @@ public class ExcelRetrieverController {
     @Value("${excel.location}")
     private String excelLocation;
 
-    @GetMapping("/upload/{id}")
-    public ResponseEntity<byte[]> uploadExcel(@NonNull @PathVariable("id") String excelId) throws Exception {
+    @GetMapping("/upload")
+    public ResponseEntity<byte[]> uploadExcel(@NonNull @RequestParam("doc") String excelId) throws Exception {
 
         if (!excelId.contains(".xlsx") && !excelId.contains(".xls")) {
             throw new Exception("Excel name not provieded");
