@@ -12,7 +12,6 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -34,7 +33,7 @@ public class ExcelRetrieverController {
         log.info("Excel location - {} -", this.excelLocation);
         log.info("Requesting file of type - {}", excelId.contains(".xlsx") ? ".xlsx" : ".xls");
 
-        byte[] data = Files.readAllBytes(Paths.get(this.excelLocation + "data.xlsx"));
+        byte[] data = Files.readAllBytes(Paths.get(this.excelLocation + excelId));
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type",
